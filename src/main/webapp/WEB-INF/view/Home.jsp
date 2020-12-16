@@ -5,9 +5,9 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>My Home</title>
-		<link type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
-		<script type="text/javascript" src="/webjars/jquery/3.2.1/dist/jquery.min.js"></script>
-		<script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<link type="text/css" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	</head>
 	<body>
 		<div>
