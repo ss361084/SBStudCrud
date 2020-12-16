@@ -5,14 +5,14 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>My Home</title>
-		<link type="text/css" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css">
 		<script type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
 		<script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	</head>
 	<body>
 		<div>
 			<div>
-				<form action="${pageContext.request.contextPath}/student/addstudent" method="post">
+				<form action="${pageContext.request.contextPath}/student/addstudent" method="post" onsubmit="return validateField();">
 					<div>
 						<label>Enter Name :: </label>
 						<input type="text" id="name" placeholder="Enter Name" required="required">
@@ -44,4 +44,5 @@
 			</div>
 		</div>
 	</body>
+	<script type="text/javascript" src="js/StudentAuthentication.js"></script>
 </html>
