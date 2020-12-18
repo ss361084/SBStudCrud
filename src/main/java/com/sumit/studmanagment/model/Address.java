@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "AddressTable")
@@ -14,12 +17,16 @@ public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long addressId;
+	@Positive(message = "Enter House No")
 	@Column(name = "houseNo", nullable = true)
 	private int houseNo;
+	@NotBlank(message = "Enter Address")
 	@Column(name = "address")
 	private String address;
+	@NotBlank(message = "Enter City")
 	@Column(name = "city")
 	private String city;
+	@NotBlank(message = "Enter State")
 	@Column(name = "state")
 	private String state;
 	public Long getAddressId() {
