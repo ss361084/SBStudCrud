@@ -19,7 +19,6 @@ public class StudentController {
 		if(bindingResult.hasErrors()) {
 			return "Home";
 		}
-		System.out.println(student);
 		return "Final";
 	}
 }

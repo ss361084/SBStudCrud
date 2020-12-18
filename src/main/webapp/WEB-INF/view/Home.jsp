@@ -6,9 +6,9 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>My Home</title>
-		<link type="text/css" rel="stylesheet" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css">
-		<script type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
-		<script type="text/javascript" src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 		<style type="text/css">
 			.errClass {
 				color: red;
@@ -20,7 +20,7 @@
 			<form:form class="form-horizontal" action="${pageContext.request.contextPath}/student/addstudent" modelAttribute="student" method="post">
 <%-- 				<form:button class="btn btn-link btn-block" type="button" id="btnPersonalInfo"><strong>Show Personal Info</strong></form:button> --%>
 <!-- 				<div id="divPersonalInfo" style="display: none;" class="col-md-10 offset-md-4"> -->
-					<div class="col-md-10 offset-md-4">
+				<div class="col-md-10 offset-md-4">
 					<div class="form-group row">
 						<label class="col-2 text-center">Enter First Name :: </label>
 						<form:input class="col-3 form-control" path="fName" placeHolder="Enter First Name"/>&nbsp;
