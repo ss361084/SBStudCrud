@@ -1,5 +1,11 @@
 package com.sumit.studmanagment.service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +27,14 @@ public class StudentService {
 	public void saveStudent(Student student) {
 		addressReposioty.save(student.getAddress());
 		studentRepository.save(student);
+	}
+	
+	public List<Student> getAllStudent(){
+		List<Student> listStudent = new ArrayList<>(); 
+		Iterator<Student> list = studentRepository.findAll().iterator();
+		while(list.hasNext()) {
+			listStudent.add(list.next());
+		}
+		return listStudent;
 	}
 }
