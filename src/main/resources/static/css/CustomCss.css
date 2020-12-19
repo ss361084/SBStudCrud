@@ -1,0 +1,13 @@
+@charset "ISO-8859-1";
+.errClass{
+	color: red;
+	font-family: sans-serif;
+	font-size: 20px;
+	font-variant: normal;
+}
+.successClass {
+	color: green;
+	font-family: sans-serif;
+	font-size: 20px;
+	font-variant: normal;
+}

@@ -10,12 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.context.annotation.Description;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.sumit.studmanagment.listenum.Gender;
@@ -40,12 +43,11 @@ public class Student {
 	@Column(name = "lName")
 	private String lName;
 	@Column(name = "email")
-	@Email(message = "Enter Correct Email",regexp = "")
+	@Email(message = "Enter Correct Email")
 	@NotBlank(message = "Enter Email")
 	private String email;
 	@Column(name = "bDate")
 	@NotNull(message = "Enter Birth Date")
-	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private Date bDate;
 	@NotNull(message = "Select Gender")
 	@Column(name = "gender")
