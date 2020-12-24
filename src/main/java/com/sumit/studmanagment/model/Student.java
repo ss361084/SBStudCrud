@@ -7,19 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.springframework.context.annotation.Description;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.sumit.studmanagment.listenum.Gender;
 
@@ -35,7 +27,7 @@ public class Student {
 	@Column(name = "fName")
 	private String fName;
 	@NotBlank(message = "Enter Middle Name")
-	@Size(min = 3,message = "Minimum 3 characters are required")
+	@Size(min = 1,message = "Minimum 3 characters are required")
 	@Column(name = "mName")
 	private String mName;
 	@NotBlank(message = "Enter Last Name")
@@ -76,15 +68,15 @@ public class Student {
 		this.mName = mName;
 		this.lName = lName;
 		this.email = email;
-		this.address = address;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	@Valid
-	@OneToOne
-	@JoinColumn(name = "myAddressId",referencedColumnName = "addressId")
-	private Address address;
+	
+//	@Valid
+//	@OneToOne
+//	@JoinColumn(name = "myAddressId",referencedColumnName = "addressId")
+//	private Address address;
 	
 	public String getfName() {
 		return fName;
@@ -112,12 +104,12 @@ public class Student {
 	public void setStudId(long studId) {
 		this.studId = studId;
 	}
-	public Address getAddress() {
-		return address;
-	}
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+//	public Address getAddress() {
+//		return address;
+//	}
+//	public void setAddress(Address address) {
+//		this.address = address;
+//	}
 //	public List<Mobile> getMobiles() {
 //		return mobiles;
 //	}
@@ -130,6 +122,6 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [studId=" + studId + ", fName=" + fName + ", mName=" + mName + ", lName=" + lName + ", email="
-				+ email + ", address=" + address + "]";
+				+ email + "]";
 	}
 }

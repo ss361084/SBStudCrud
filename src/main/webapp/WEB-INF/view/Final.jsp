@@ -9,6 +9,11 @@
 	</head>
 	<body>
 		<section class="container-fluid">
+			<div class="row">
+				<div class="col-4"></div>
+				<a class="btn btn-primary col-4 mt-4" href="${pageContext.request.contextPath}/showstudnetpage">Add Student</a>
+				<div class="col-4"></div>
+			</div>
 			<div>
 				<c:if test="${not empty successMsg}">
 					<div class="row">
@@ -18,13 +23,12 @@
 				<c:choose>
 					<c:when test="${not empty listStudent}">
 						<div class="row">
-							<h3 class="col-md-10 offset-md-5">Student Detail</h3>
-							<table class="table table-bordered">
+							<h3 class="col-md-10 offset-md-5 mt-4">Student Detail</h3>
+							<table class="table table-bordered mt-4">
 								<thead>
 									<tr>
 										<th>Full Name</th>
 										<th>Email</th>
-										<th>Birth date</th>
 										<th>Gender</th>
 										<th>Action</th>
 									</tr>
@@ -34,17 +38,16 @@
 										<tr>
 											<td>${stud.fName} ${stud.mName} ${stud.lName}</td>
 											<td>${stud.email}</td>
-											<td>${stud.bDate}</td>
 											<td>${stud.gender}</td>
 											<td>
-												<a class="btn btn-primary" href="${pageContext.request.contextPath}/student/delete/${stud.studId}">Delete</a>
-												<a class="btn btn-primary" href="${pageContext.request.contextPath}/student/update/${stud.studId}">Update</a>
+												<a class="btn btn-primary" href="${pageContext.request.contextPath}/deletestudent/${stud.studId}">Delete</a>
+												<a class="btn btn-primary" href="${pageContext.request.contextPath}/updatestudent/${stud.studId}">Update</a>
 											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
-							<h3 class="col-md-10 offset-md-5">Address Detail</h3>
+							<%-- <h3 class="col-md-10 offset-md-5">Address Detail</h3>
 							<table class="table table-bordered">
 								<thead>
 									<tr>
@@ -69,11 +72,11 @@
 										</tr>
 									</c:forEach>
 								</tbody>
-							</table>
+							</table> --%>
 						</div>
 					</c:when>
 					<c:otherwise>
-						<h3>No Record Found...</h3>
+						<h3 class="col-md-10 offset-md-4">No Record Found...</h3>
 					</c:otherwise>
 				</c:choose>
 			</div>

@@ -10,11 +10,18 @@
 	</head>
 	<body>
 		<section class="container-fluid mt-5">
-			<form:form class="form-horizontal" action="${pageContext.request.contextPath}/student/addstudent" modelAttribute="student" method="post">
+			<c:if test="${not empty errMsg}">
+				<div class="errClass col-md-10 offset-md-4">
+					<h3>${errMsg}</h3>
+				</div>
+			</c:if>
+			<form:form class="form-horizontal" action="${pageContext.request.contextPath}/addstudent" modelAttribute="student" method="post">
 <%-- 				<form:button class="btn btn-link btn-block" type="button" id="btnPersonalInfo"><strong>Show Personal Info</strong></form:button> --%>
 <!-- 				<div id="divPersonalInfo" style="display: none;" class="col-md-10 offset-md-4"> -->
 				<div class="col-md-10 offset-md-4">
 					<div class="form-group row">
+						<form:hidden path="studId"/>
+						<input type="hidden" id="opType" name="opType" value="${opType}">
 						<label class="col-2 text-center">Enter First Name :: </label>
 						<form:input class="col-3 form-control" path="fName" placeHolder="Enter First Name"/>&nbsp;
 						<form:errors class="errClass" path="fName"></form:errors>
@@ -47,7 +54,7 @@
 <!-- 				</div> -->
 <%-- 				<form:button class="btn btn-link btn-block" type="button" id="btnAddressInfo"><strong>Show Address Info</strong></form:button> --%>
 <!-- 				<div id="divAddressInfo" style="display: none;" class="col-md-10 offset-md-4"> -->
-					<div class="form-group row">
+					<%-- <div class="form-group row">
 						<label class="col-2 text-center">Enter House No :: </label>
 						<form:input class="col-3 form-control" path="address.houseNo" placeHolder="House Number"/>
 						<form:errors class="errClass" path="address.houseNo"></form:errors>
@@ -66,11 +73,25 @@
 						<label class="col-2 text-center">Enter State :: </label>
 						<form:input class="col-3 form-control" path="address.state"/>
 						<form:errors class="errClass" path="address.state"></form:errors>
-					</div>		
+					</div>	 --%>	
 <!-- 				</div> -->
 				</div>
 				<div class="form-group row">
-					<form:button class="btn btn-lite btn-block" type="submit"><strong>SUBMIT</strong></form:button>
+					<div class="col-5"></div>
+					<div class="col-1">
+						<form:button class="btn btn-primary" type="submit">
+							<strong>
+								<c:choose>
+									<c:when test="${opType eq 'edit'}">Update</c:when>
+									<c:otherwise>Submit</c:otherwise>
+								</c:choose>
+							</strong>
+						</form:button>
+					</div>
+					<div class="col-1">
+						<a class="btn btn-primary" href="${pageContext.request.contextPath}/"><strong>Home</strong></a>
+					</div>
+					<div class="col-5"></div>
 				</div>
 			</form:form>
 		</section>
