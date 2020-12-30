@@ -1,9 +1,12 @@
 package com.sumit.studmanagment.controller;
 
+import java.util.Locale;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -23,28 +26,31 @@ public class HomeController {
 	
 	@Autowired
 	private StudentService studentService;
+	@Autowired
+	private MessageSource messageSource;
 
 	@PostMapping(value = {"/addstudent"})
 	public String saveStudent(@ModelAttribute("student") @Valid Student student, BindingResult bindingResult, Model model,RedirectAttributes attributes, HttpServletRequest req) {
 		String opType = StringUtils.hasLength(req.getParameter("opType")) ? req.getParameter("opType"):"";
 		if(bindingResult.hasErrors()) {
-			return "Home";
+			return "AddStudent";
 		}
 		if(studentService.getStudentByEmail(student.getEmail()) > 0 && student.getStudId() == 0) {
-			model.addAttribute("errMsg", "Already Register...");
-			return "Home";
+			model.addAttribute("errMsg", messageSource.getMessage("student_already_register", null, Locale.ENGLISH));
+			return "AddStudent";
 		} else {
 			studentService.saveStudent(student);
-			attributes.addFlashAttribute("successMsg", opType.equals("edit")?"Successfully Update":"Successfully Added");
+			attributes.addFlashAttribute("successMsg", opType.equals("edit") ? messageSource.getMessage("student_update_successfully", null, Locale.ENGLISH)
+														: messageSource.getMessage("student_add_successfully", null, Locale.ENGLISH));
 		}
 		return "redirect:/";
 	}
 	
 	@GetMapping(value = {"/"})
-	public ModelAndView studentdata() {
+	public ModelAndView studentdata(Model model) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("listStudent", studentService.getAllStudent());
-		modelAndView.setViewName("Final");
+		modelAndView.setViewName("StudentDetail");
 		return modelAndView;
 	}
 	
@@ -52,13 +58,14 @@ public class HomeController {
 	public String showStudentPage(Model model) {
 		model.addAttribute("student", new Student());
 		model.addAttribute("opType", "save");
-		return "Home";
+		return "AddStudent";
 	}
 	
 	@GetMapping(value = {"/deletestudent/{studentId}"})
-	public String deleteStudent(@PathVariable(value = "studentId") long studentId) {
+	public String deleteStudent(@PathVariable(value = "studentId") long studentId, RedirectAttributes redirectAttributes) {
 		if(studentId != 0) {
 			studentService.deleteStudentById(studentId);
+			redirectAttributes.addFlashAttribute("successMsg", messageSource.getMessage("student_deleted_successfully", null, Locale.ENGLISH));
 		}
 		return "redirect:/";
 	}
@@ -69,6 +76,6 @@ public class HomeController {
 			model.addAttribute("student", studentService.getStudentById(studentId));
 			model.addAttribute("opType", "edit");
 		}
-		return "Home";
+		return "AddStudent";
 	}
 }

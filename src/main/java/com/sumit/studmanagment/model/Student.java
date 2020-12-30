@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -44,7 +46,33 @@ public class Student {
 	@NotNull(message = "Select Gender")
 	@Column(name = "gender")
 	private Gender gender;
+	@OneToOne
+	@Valid
+	private Address address;
 	
+	public Student(long studId,
+			@NotBlank(message = "Enter First Name") @Size(min = 3, message = "Minimum 3 characters are required") String fName,
+			@NotBlank(message = "Enter Middle Name") @Size(min = 1, message = "Minimum 3 characters are required") String mName,
+			@NotBlank(message = "Enter Last Name") @Size(min = 3, message = "Minimum 3 characters are required") String lName,
+			@Email(message = "Enter Correct Email") @NotBlank(message = "Enter Email") String email,
+			@NotNull(message = "Enter Birth Date") Date bDate, @NotNull(message = "Select Gender") Gender gender,
+			@Valid Address address) {
+		super();
+		this.studId = studId;
+		this.fName = fName;
+		this.mName = mName;
+		this.lName = lName;
+		this.email = email;
+		this.bDate = bDate;
+		this.gender = gender;
+		this.address = address;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 	public Gender getGender() {
 		return gender;
 	}
@@ -60,23 +88,10 @@ public class Student {
 	public String getEmail() {
 		return email;
 	}
-	public Student(long studId, @NotBlank(message = "Enter Student Name") String fName, String mName, String lName,
-			@Email String email, Address address) {
-		super();
-		this.studId = studId;
-		this.fName = fName;
-		this.mName = mName;
-		this.lName = lName;
-		this.email = email;
-	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-//	@Valid
-//	@OneToOne
-//	@JoinColumn(name = "myAddressId",referencedColumnName = "addressId")
-//	private Address address;
 	
 	public String getfName() {
 		return fName;
@@ -96,32 +111,18 @@ public class Student {
 	public void setlName(String lName) {
 		this.lName = lName;
 	}
-	//	@OneToMany(mappedBy = "student")
-//	private List<Mobile> mobiles;
 	public long getStudId() {
 		return studId;
 	}
 	public void setStudId(long studId) {
 		this.studId = studId;
 	}
-//	public Address getAddress() {
-//		return address;
-//	}
-//	public void setAddress(Address address) {
-//		this.address = address;
-//	}
-//	public List<Mobile> getMobiles() {
-//		return mobiles;
-//	}
-//	public void setMobiles(List<Mobile> mobiles) {
-//		this.mobiles = mobiles;
-//	}
 	public Student() {
 		super();
 	}
 	@Override
 	public String toString() {
 		return "Student [studId=" + studId + ", fName=" + fName + ", mName=" + mName + ", lName=" + lName + ", email="
-				+ email + "]";
+				+ email + ", bDate=" + bDate + ", gender=" + gender + ", address=" + address + "]";
 	}
 }

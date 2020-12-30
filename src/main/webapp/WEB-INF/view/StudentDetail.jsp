@@ -1,17 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="sTag" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
-		<title>Show Student Details</title>
 		<%@include file="include/Head.jsp"%>
+		<title><sTag:message code="label_studdetail_page_title"/></title>
 	</head>
 	<body>
 		<section class="container-fluid">
 			<div class="row">
 				<div class="col-4"></div>
-				<a class="btn btn-primary col-4 mt-4" href="${pageContext.request.contextPath}/showstudnetpage">Add Student</a>
+				<a class="btn btn-primary col-4 mt-4" href="${pageContext.request.contextPath}/showstudnetpage">
+					<sTag:message code="label_add_student_btn"/>
+				</a>
 				<div class="col-4"></div>
 			</div>
 			<div>
@@ -23,14 +26,14 @@
 				<c:choose>
 					<c:when test="${not empty listStudent}">
 						<div class="row">
-							<h3 class="col-md-10 offset-md-5 mt-4">Student Detail</h3>
+							<h3 class="col-md-10 offset-md-5 mt-4"><sTag:message code="label_studdetail_caption"/></h3>
 							<table class="table table-bordered mt-4">
 								<thead>
 									<tr>
-										<th>Full Name</th>
-										<th>Email</th>
-										<th>Gender</th>
-										<th>Action</th>
+										<th><sTag:message code="label_studdetail_full_name"/></th>
+										<th><sTag:message code="label_studdetail_email"/></th>
+										<th><sTag:message code="label_studdetail_gender"/></th>
+										<th><sTag:message code="label_studdetail_Action"/></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -47,44 +50,15 @@
 									</c:forEach>
 								</tbody>
 							</table>
-							<%-- <h3 class="col-md-10 offset-md-5">Address Detail</h3>
-							<table class="table table-bordered">
-								<thead>
-									<tr>
-										<th>House No</th>
-										<th>Address</th>
-										<th>City</th>
-										<th>State</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${listStudent}" var="stud">
-										<tr>
-											<td>${stud.address.houseNo}</td>
-											<td>${stud.address.address}</td>
-											<td>${stud.address.city}</td>
-											<td>${stud.address.state}</td>
-											<td>
-												<a class="btn btn-primary">Delete</a>
-												<a class="btn btn-primary">Update</a>
-											</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table> --%>
 						</div>
 					</c:when>
 					<c:otherwise>
-						<h3 class="col-md-10 offset-md-4">No Record Found...</h3>
+						<h3 class="col-md-10 offset-md-4 mt-4">
+							<sTag:message code="label_studdetail_no_record_found"/>
+						</h3>
 					</c:otherwise>
 				</c:choose>
 			</div>
 		</section>
 	</body>
-	<script type="text/javascript">
-		function setAddressDetail(id){
-			console.log(id);
-		}
-	</script>
 </html>

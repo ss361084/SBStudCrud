@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @Entity
@@ -29,6 +28,7 @@ public class Address {
 	@NotBlank(message = "Enter State")
 	@Column(name = "state")
 	private String state;
+	
 	public Long getAddressId() {
 		return addressId;
 	}
@@ -59,15 +59,18 @@ public class Address {
 	public void setState(String state) {
 		this.state = state;
 	}
+	
 	@Override
 	public String toString() {
 		return "Address [addressId=" + addressId + ", houseNo=" + houseNo + ", address=" + address + ", city=" + city
 				+ ", state=" + state + "]";
 	}
+	
 	public Address() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	public Address(Long addressId, int houseNo, String address, String city, String state) {
 		super();
 		this.addressId = addressId;
